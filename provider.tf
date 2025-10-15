@@ -13,5 +13,6 @@ provider "google" {
   project = var.project_id
   region  = var.region
   zone    = var.zone
+  credentials = file("C:/Users/satya/OneDrive/desktop/terraform-sa-key.json")
 }
 
