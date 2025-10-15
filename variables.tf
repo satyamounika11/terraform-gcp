@@ -1,7 +1,8 @@
 # Project and location
-variable "sandbox-443817" {
+variable "project_id" {
   description = "GCP project ID"
   type        = string
+  default     = "sandbox-443817"
 }
 
 variable "region" {
