@@ -57,7 +57,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/gcp-key.json 
+      GOOGLE_APPLICATION_CREDENTIALS: $HOME/gcp-key.json
 
     steps:
       - name: Checkout code
@@ -71,6 +71,8 @@ jobs:
       - name: Write GCP credentials file from GitHub Secret
         run: |
           echo '${{ secrets.GCP_CREDENTIALS }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
+          # optional: lock file permissions down
+          chmod 600 "$GOOGLE_APPLICATION_CREDENTIALS"
 
       - name: Terraform fmt check
         run: terraform fmt -check -recursive
