@@ -24,3 +24,9 @@ variable "enable_ec2_instance" {
   default     = true
 }
 
+variable "instance_count" {
+  description = "Number of VM instances to create"
+  type        = number
+  default     = 3
+}
+

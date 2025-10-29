@@ -17,10 +17,10 @@ resource "google_compute_firewall" "allow_ssh" {
   source_ranges = ["0.0.0.0/0"]
 }
 
-# Conditional creation of VM
+# Create 3 instances when enabled, else 0
 resource "google_compute_instance" "micro_vm" {
-  count        = var.enable_ec2_instance ? 1 : 0
-  name         = "micro-vm"
+  count        = var.enable_ec2_instance ? var.instance_count : 0
+  name         = "micro-vm-${count.index}"
   machine_type = "e2-micro"
   zone         = var.zone
 
@@ -37,10 +37,8 @@ resource "google_compute_instance" "micro_vm" {
   }
 
   metadata = {
-    # You can use OS Login later instead of keys
     enable-oslogin = "TRUE"
   }
 
   tags = ["ssh"]
 }
-
