@@ -7,6 +7,10 @@ terraform {
   }
 
   required_version = ">= 1.5.0"
+  backend "gcs" {
+    bucket = "sandbox-tf-state-443817"
+    prefix = "terraform/state"   # folder-like path within the bucket
+  }
 }
 
 provider "google" {
