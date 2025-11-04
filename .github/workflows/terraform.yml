@@ -36,8 +36,11 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: sandbox-443817
-          service_account_key: '${{ secrets.GCP_CREDENTIALS }}'
-          export_default_credentials: true
+          export_default_credentials: false
+
+      - name: Authenticate gcloud with service account
+        run: |
+          gcloud auth activate-service-account --key-file=/tmp/gcp-key.json
 
       - name: Create Terraform state bucket if missing
         run: |
