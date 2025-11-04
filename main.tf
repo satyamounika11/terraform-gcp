@@ -30,7 +30,7 @@ resource "google_compute_instance" "micro_vm" {
     ignore_changes = [
       metadata,
       tags,
-      network_interface[0].access_config, 
+      network_interface[0].access_config,
     ]
   }
 
