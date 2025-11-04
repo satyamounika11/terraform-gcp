@@ -91,6 +91,6 @@ jobs:
         run: terraform apply -input=false -auto-approve tfplan
 
       # ✅ Uncomment to auto-destroy infrastructure (USE WITH EXTREME CAUTION)
-      - name: Terraform Destroy
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform destroy -input=false -auto-approve
+      # - name: Terraform Destroy
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: terraform destroy -input=false -auto-approve

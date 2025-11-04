@@ -24,6 +24,16 @@ resource "google_compute_instance" "micro_vm" {
   machine_type = "e2-micro"
   zone         = var.zone
 
+  lifecycle {
+    prevent_destroy       = true
+    create_before_destroy = true
+    ignore_changes = [
+      metadata,
+      tags,
+      network_interface[0].access_config, 
+    ]
+  }
+
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
